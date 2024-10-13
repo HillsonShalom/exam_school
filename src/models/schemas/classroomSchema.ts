@@ -7,3 +7,17 @@ export interface iclassroom extends Document {
     students: istudent[];
     name    : string;
 }
+
+export const classroomSchema = new Schema<iclassroom>({
+    teacher: {
+        type: Schema.Types.ObjectId,
+        ref : 'teacher'
+    },
+    students: {
+        type: [Schema.Types.ObjectId],
+        ref : 'student'
+    },
+    name: {
+        type: String
+    }
+}, { timestamps: true })

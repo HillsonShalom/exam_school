@@ -6,5 +6,20 @@ export interface iuser extends Document {
     password : string;
     email    : string;
     role     : string;
-    classroom: iclassroom;
 }
+
+export const userSchema = new Schema<iuser>({
+    username: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    role: {
+        type: String,
+        enum: ['student', 'teacher']
+    }
+}, { timestamps: true })
