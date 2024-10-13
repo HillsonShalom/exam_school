@@ -20,6 +20,7 @@ export const classroomSchema = new Schema<iclassroom>({
     name: {
         type: String,
         required: [true, "name is mandatory"],
+        unique: true,
         maxlength: [45, "too long"],
         validate: {
             validator: (name: string) => /^[a-zA-Z\s-']+$/.test(name),
