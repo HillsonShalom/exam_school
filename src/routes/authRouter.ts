@@ -3,7 +3,7 @@ import { login, logout, registerTeacher } from "../controllers/authCtrlr";
 
 const router = Router()
 
-router.post  ('/', registerTeacher)
+router.post  ('/spec-register', registerTeacher)
 router.post  ('/', login)
 router.put   ('/:id')
 router.delete('/:id', logout)
