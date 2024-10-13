@@ -5,9 +5,11 @@ import studentsRtr  from './routes/studentsRouter'
 import classroomRtr from './routes/classroomRouter'
 
 import 'dotenv/config'
+import { dbConnection } from './DAL/dbConnection'
 const port = process.env.PORT
 
-const app = exp()
+const app = exp();
+dbConnection();
 
 app.use(exp.json())
 
