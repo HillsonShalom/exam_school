@@ -1,4 +1,5 @@
 import exp from 'express'
+import cookieParser from 'cookie-parser'
 import authRtr from './routes/authRouter'
 import teachersRtr  from './routes/teacherRouter'
 import studentsRtr  from './routes/studentsRouter'
@@ -6,12 +7,20 @@ import classroomRtr from './routes/classroomRouter'
 
 import 'dotenv/config'
 import { dbConnection } from './DAL/dbConnection'
+import { errorHandler, responseErrorHandler } from './middlewares/errorsMiddleware'
+import verifyUser from './middlewares/authMiddleware'
 const port = process.env.PORT
 
 const app = exp();
 dbConnection();
 
-app.use(exp.json())
+// middlewares
+app.use(exp.json());
+app.use(cookieParser());
+app.use(errorHandler);
+app.use(responseErrorHandler);
+app.use(verifyUser);
+
 
 app.use('/auth'     , authRtr     );
 app.use('/students' , studentsRtr );
