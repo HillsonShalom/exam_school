@@ -32,6 +32,6 @@ export const userSchema = new Schema<iuser>({
     },
     role: {
         type: String,
-        enum: ['student', 'teacher']
+        enum: ['student', 'teacher', 'admin']
     }
 }, { timestamps: true })
