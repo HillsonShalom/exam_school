@@ -19,8 +19,10 @@ export const responseErrorHandler = (
   next();
 
   try {
+    console.log(res.appError);
     if (res.appError) {
-      res.status(res.appError.status).json(res.appError.message)
+        console.log('i here!');
+      res.status(res.appError.status || 400).json(res.appError.message)
     }
   } 
   catch(err) {

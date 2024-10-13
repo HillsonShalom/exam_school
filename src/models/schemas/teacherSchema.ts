@@ -4,7 +4,7 @@ import { iuser, userSchema } from "./userSchema";
 
 export interface iteacher extends Document {
     details  : iuser;
-    classroom: iclassroom;
+    classroom: mongoose.Types.ObjectId;
 }
 
 export const teacherSchema = new Schema<iteacher>({

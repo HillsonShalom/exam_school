@@ -1,8 +1,8 @@
 export interface AppResError extends Error {
-    status: number;
+    status?: number;
 }
 export class AppResError extends Error {
-    status: number;
+    status?: number;
     constructor(stat: number, msg: string){
         super(msg)
         this.status = stat
