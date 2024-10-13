@@ -9,10 +9,14 @@ export interface iteacher extends Document {
 
 export const teacherSchema = new Schema<iteacher>({
     details: {
-        type: userSchema
+        type    : userSchema,
+        required: [true, "I need to know your details..."]
     },
     classroom: {
-        type: Schema.Types.ObjectId,
-        ref : 'classroom'
+        type    : Schema.Types.ObjectId,
+        required: [true, "teacher can't be created without a classroom!"],
+        ref     : 'Classroom'
     }
-}, { timestamps: true })
+}, { timestamps: true });
+
+export const Teacher = mongoose.model('Teacher', teacherSchema);

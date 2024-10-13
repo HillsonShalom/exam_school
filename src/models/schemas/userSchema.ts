@@ -10,13 +10,25 @@ export interface iuser extends Document {
 
 export const userSchema = new Schema<iuser>({
     username: {
-        type: String
+        type: String,
+        required: [true, "name is mandatory"],
+        maxlength: [45, "too long"],
+        validate: {
+            validator: (name: string) => /^[a-zA-Z\s-']+$/.test(name),
+            message  : "name can't include a special characters!"
+        }
     },
     password: {
-        type: String
+        type: String,
+        required: [true, "password is mandatory"]
     },
     email: {
-        type: String
+        type: String,
+        required: [true, "email is mandatory"],
+        validate: {
+            validator: (email: string) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email),
+            message: "wrong email!"
+        }
     },
     role: {
         type: String,

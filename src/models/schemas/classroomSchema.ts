@@ -11,13 +11,21 @@ export interface iclassroom extends Document {
 export const classroomSchema = new Schema<iclassroom>({
     teacher: {
         type: Schema.Types.ObjectId,
-        ref : 'teacher'
+        ref : 'Teacher'
     },
     students: {
         type: [Schema.Types.ObjectId],
-        ref : 'student'
+        ref : 'Student'
     },
     name: {
-        type: String
+        type: String,
+        required: [true, "name is mandatory"],
+        maxlength: [45, "too long"],
+        validate: {
+            validator: (name: string) => /^[a-zA-Z\s-']+$/.test(name),
+            message  : "name can't include a special characters!"
+        }
     }
-}, { timestamps: true })
+}, { timestamps: true });
+
+export const Classroom = mongoose.model('Classroom', classroomSchema);

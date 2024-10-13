@@ -7,9 +7,17 @@ export interface iscore extends Document {
 
 export const scoreSchema = new Schema<iscore>({
     exam_name: {
-        type: String
+        type: String,
+        required: [true, "name is mandatory"],
+        maxlength: [45, "too long"],
+        validate: {
+            validator: (name: string) => /^[a-zA-Z\s-']+$/.test(name),
+            message  : "name can't include a special characters!"
+        }
     },
     score: {
-        type: Number
+        type: Number,
+        max : [100, "A score cannot be over a hundred"],
+        min : [0  , "He can't be that bad..."]
     }
 }, { timestamps: true })
