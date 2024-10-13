@@ -10,6 +10,7 @@ export const scoreSchema = new Schema<iscore>({
         type: String,
         required: [true, "name is mandatory"],
         maxlength: [45, "too long"],
+        unique: true,
         validate: {
             validator: (name: string) => /^[a-zA-Z\s-']+$/.test(name),
             message  : "name can't include a special characters!"
